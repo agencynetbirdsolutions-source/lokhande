@@ -1,0 +1,685 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crystal Designers | Interior Design Studio</title>
+  <meta name="description" content="Crystal Designers crafts calm, modern interiors with premium materials, clear timelines, and elegant detail.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --crystal-bg: #f4f6f9;
+      --crystal-text: #0d1b2a;
+      --crystal-muted: #5a6a7e;
+      --crystal-accent: #2563eb;
+      --crystal-accent-soft: #dbeafe;
+      --crystal-dark: #071120;
+      --crystal-card: #ffffff;
+      --crystal-line: #d1dce8;
+      --shadow-soft: 0 20px 40px rgba(7, 17, 32, 0.10);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Manrope", sans-serif;
+      color: var(--crystal-text);
+      background:
+        radial-gradient(circle at 10% 0%, #dbeafe 0%, transparent 35%),
+        radial-gradient(circle at 90% 10%, #e8eeff 0%, transparent 30%),
+        var(--crystal-bg);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    .navbar-brand {
+      font-family: "Cormorant Garamond", serif;
+      letter-spacing: 0.3px;
+    }
+
+    .navbar {
+      backdrop-filter: blur(8px);
+      background: rgba(246, 248, 247, 0.92) !important;
+      border-bottom: 1px solid var(--crystal-line);
+    }
+
+    .navbar-brand {
+      font-size: 1.8rem;
+      color: var(--crystal-dark) !important;
+    }
+
+    .nav-link {
+      color: var(--crystal-text) !important;
+      font-weight: 600;
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0.2rem;
+      width: 0;
+      height: 2px;
+      background: var(--crystal-accent);
+      transition: width 0.28s ease;
+    }
+
+    .nav-link:hover::after,
+    .nav-link:focus::after {
+      width: 100%;
+    }
+
+    .hero {
+      min-height: 92vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      color: #f0f4ff;
+      background:
+        linear-gradient(120deg, rgba(16, 12, 8, 0.72), rgba(33, 22, 14, 0.52)),
+        radial-gradient(circle at 18% 22%, rgba(245, 222, 179, 0.32), transparent 42%),
+        radial-gradient(circle at 82% 16%, rgba(252, 239, 214, 0.24), transparent 36%),
+        url("https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=1800&q=80") center/cover,
+        url("https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1800&q=80") center/cover;
+      background-blend-mode: multiply, screen, soft-light, normal, normal;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      width: 34rem;
+      height: 34rem;
+      border-radius: 50%;
+      filter: blur(70px);
+      z-index: 0;
+    }
+
+    .hero::before {
+      top: -22%;
+      right: -8%;
+      background: rgba(250, 214, 165, 0.24);
+      animation: drift 9s ease-in-out infinite;
+    }
+
+    .hero::after {
+      bottom: -26%;
+      left: -10%;
+      background: rgba(214, 171, 117, 0.20);
+      animation: drift 10s ease-in-out infinite reverse;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 1rem;
+      animation: rise 900ms ease-out;
+    }
+
+    .whatsapp-btn {
+      display: inline-block;
+      max-width: min(92vw, 360px);
+      border-radius: 18px;
+      overflow: hidden;
+      box-shadow: 0 18px 40px rgba(5, 35, 34, 0.45);
+      transition: transform 0.28s ease, box-shadow 0.28s ease;
+    }
+
+    .whatsapp-btn:hover,
+    .whatsapp-btn:focus {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 44px rgba(5, 35, 34, 0.55);
+    }
+
+    .whatsapp-btn img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6.3vw, 5.4rem);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto 2rem;
+      color: #f3e6d2;
+      font-size: 1.1rem;
+    }
+
+    .btn-crystal {
+      background: linear-gradient(130deg, #2563eb, #4338ca);
+      border: 0;
+      color: #fff;
+      border-radius: 999px;
+      padding: 0.85rem 1.8rem;
+      font-weight: 700;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .btn-crystal:hover,
+    .btn-crystal:focus {
+      transform: translateY(-2px);
+      box-shadow: 0 24px 45px rgba(37, 99, 235, 0.32);
+      color: #fff;
+    }
+
+    section {
+      padding: 4.7rem 0;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 4vw, 3rem);
+      text-align: center;
+      margin-bottom: 2.4rem;
+      color: var(--crystal-dark);
+    }
+
+    .service-card,
+    .project-card,
+    .testimonial-card,
+    .dotted-box,
+    .accordion-item {
+      border: 1px solid var(--crystal-line);
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--crystal-card);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .service-card,
+    .project-card,
+    .gallery-tile,
+    .testimonial-card {
+      transform: translateY(12px);
+      opacity: 0;
+      animation: reveal 700ms ease forwards;
+    }
+
+    .service-card:nth-child(2),
+    .project-card:nth-child(2),
+    .gallery-tile:nth-child(2),
+    .testimonial-card:nth-child(2) { animation-delay: 100ms; }
+
+    .service-card:nth-child(3),
+    .project-card:nth-child(3),
+    .gallery-tile:nth-child(3),
+    .testimonial-card:nth-child(3) { animation-delay: 200ms; }
+
+    .service-card img,
+    .project-card img,
+    .gallery-tile img {
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+    }
+
+    #why,
+    #gallery,
+    footer {
+      background: linear-gradient(145deg, #050e24, #0d1c46);
+      color: #e8eeff;
+    }
+
+    #why .section-title,
+    #gallery .section-title,
+    #testimonials .section-title {
+      color: #eef2ff;
+    }
+
+    .dotted-box {
+      height: 100%;
+      padding: 1.5rem;
+      background: linear-gradient(165deg, rgba(219, 234, 254, 0.14), rgba(255, 255, 255, 0.04));
+      border-style: dashed;
+      border-color: rgba(147, 197, 253, 0.32);
+      text-align: center;
+      color: #dce8ff;
+    }
+
+    .dotted-box .icon {
+      width: 58px;
+      height: 58px;
+      display: inline-grid;
+      place-items: center;
+      margin-bottom: 1rem;
+      border-radius: 50%;
+      background: rgba(96, 165, 250, 0.20);
+      font-size: 1.7rem;
+    }
+
+    #packages,
+    #faq {
+      background: linear-gradient(180deg, #f8faff, #eef2fb);
+    }
+
+    .gallery-tile img {
+      height: 250px;
+      border-radius: 14px;
+      transition: transform 0.35s ease;
+    }
+
+    .gallery-tile:hover img {
+      transform: scale(1.04);
+    }
+
+    #testimonials {
+      background: linear-gradient(160deg, #060f2a, #0b1a50);
+      color: #d8e4ff;
+    }
+
+    .testimonial-card {
+      padding: 1.5rem;
+      border-color: rgba(147, 197, 253, 0.26);
+      background: linear-gradient(160deg, rgba(219, 234, 254, 0.13), rgba(199, 210, 254, 0.08));
+      color: #d4e1ff;
+      min-height: 245px;
+    }
+
+    .accordion-button {
+      font-weight: 700;
+      color: var(--crystal-dark);
+      background: #ffffff;
+    }
+
+    .accordion-button:not(.collapsed) {
+      background: var(--crystal-accent-soft);
+      color: #1d4ed8;
+      box-shadow: none;
+    }
+
+    .cta-section {
+      background:
+        linear-gradient(130deg, rgba(5, 14, 50, 0.86), rgba(29, 62, 170, 0.72)),
+        url("https://images.unsplash.com/photo-1600210492486-724fe5c67fb3?auto=format&fit=crop&w=1600&q=80") center/cover;
+      color: #eef2ff;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(2rem, 4.5vw, 3.5rem);
+    }
+
+    footer {
+      border-top: 1px solid rgba(147, 197, 253, 0.2);
+    }
+
+    .whatsapp-float {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      z-index: 999;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #25d366;
+      display: grid;
+      place-items: center;
+      box-shadow: 0 10px 24px rgba(37, 211, 102, 0.45);
+    }
+
+    .whatsapp-float img {
+      width: 30px;
+      height: 30px;
+    }
+
+    @keyframes drift {
+      0%,
+      100% { transform: translateY(0px); }
+      50% { transform: translateY(-22px); }
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes reveal {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 3.8rem 0;
+      }
+
+      .hero {
+        min-height: 84vh;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .service-card img,
+      .project-card img,
+      .gallery-tile img {
+        height: 210px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg shadow-sm sticky-top">
+    <div class="container">
+      <a class="navbar-brand fw-semibold" href="#home">Crystal Designers</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#services">Services</a></li>
+          <li class="nav-item"><a class="nav-link" href="#why">Why Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="#packages">Projects</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="#testimonials">Testimonials</a></li>
+          <li class="nav-item"><a class="nav-link" href="#faq">FAQs</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        </ul>
+        <a class="btn btn-crystal btn-sm ms-lg-3 mt-2 mt-lg-0" href="#whatsapp" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="container hero-content">
+      <a class="whatsapp-btn" href="#whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Open WhatsApp">
+        <img src="m.png" alt="Crystal Designers WhatsApp banner" loading="eager">
+      </a>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="container">
+      <h2 class="section-title">Interior Design Services</h2>
+      <div class="row g-4">
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card h-100">
+            <img src="https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&w=900&q=80" alt="Luxury modular kitchen" loading="lazy">
+            <div class="card-body p-4">
+              <h5>Modular Kitchen Design</h5>
+              <p class="mb-0 text-secondary">Functional kitchen layouts with custom cabinetry, premium hardware, and warm layered lighting.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card h-100">
+            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=900&q=80" alt="Designer bedroom interior" loading="lazy">
+            <div class="card-body p-4">
+              <h5>Bedroom Styling</h5>
+              <p class="mb-0 text-secondary">Soft textures, custom wardrobes, and restful color stories tailored to your lifestyle.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card h-100">
+            <img src="https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?auto=format&fit=crop&w=900&q=80" alt="Modern living room" loading="lazy">
+            <div class="card-body p-4">
+              <h5>Living Room Concepts</h5>
+              <p class="mb-0 text-secondary">Statement walls, curated furniture, and elegant flow planning for everyday comfort.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card h-100">
+            <img src="https://images.unsplash.com/photo-1560185008-b033106af5c3?auto=format&fit=crop&w=900&q=80" alt="Elegant bathroom interior" loading="lazy">
+            <div class="card-body p-4">
+              <h5>Premium Bathroom Design</h5>
+              <p class="mb-0 text-secondary">Spa-inspired bathrooms with durable finishes, concealed storage, and elegant fixtures.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card h-100">
+            <img src="https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&w=900&q=80" alt="Luxury dining and lighting" loading="lazy">
+            <div class="card-body p-4">
+              <h5>Lighting and Decor Curation</h5>
+              <p class="mb-0 text-secondary">Layered ambient lighting and decor pairings that create a complete designer finish.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="service-card h-100">
+            <img src="https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=900&q=80" alt="Walk in wardrobe design" loading="lazy">
+            <div class="card-body p-4">
+              <h5>Wardrobes and Storage</h5>
+              <p class="mb-0 text-secondary">Space-smart storage systems that maximize utility while keeping every room visually calm.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="why">
+    <div class="container">
+      <h2 class="section-title">Why Homeowners Choose Crystal</h2>
+      <div class="row text-center g-4">
+        <div class="col-md-3">
+          <div class="dotted-box">
+            <div class="icon">01</div>
+            <h5>Design-Led Planning</h5>
+            <p class="mb-0">Each project starts with moodboards, material samples, and realistic 3D previews.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="dotted-box">
+            <div class="icon">02</div>
+            <h5>Transparent Pricing</h5>
+            <p class="mb-0">Clear package costing, milestone billing, and zero hidden surprises.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="dotted-box">
+            <div class="icon">03</div>
+            <h5>Trusted Execution</h5>
+            <p class="mb-0">Dedicated site team, quality checks, and timeline-focused delivery.</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="dotted-box">
+            <div class="icon">04</div>
+            <h5>Aftercare Support</h5>
+            <p class="mb-0">Post-handover guidance and maintenance support for complete peace of mind.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="packages">
+    <div class="container">
+      <h2 class="section-title">Signature Project Styles</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="project-card text-center h-100">
+            <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=900" alt="Contemporary apartment interior" loading="lazy">
+            <div class="p-4">
+              <h5>Urban Crystal</h5>
+              <p class="mb-0 text-secondary">Minimal lines, matte textures, and subtle metallic accents for city apartments.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="project-card text-center h-100">
+            <img src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=900&q=80" alt="Warm contemporary home interior" loading="lazy">
+            <div class="p-4">
+              <h5>Warm Contemporary</h5>
+              <p class="mb-0 text-secondary">Wood tones, sculptural lights, and cozy social spaces for families.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="project-card text-center h-100">
+            <img src="https://images.unsplash.com/photo-1617103996702-96ff29b1c467?auto=format&fit=crop&w=900&q=80" alt="Luxury penthouse interior" loading="lazy">
+            <div class="p-4">
+              <h5>Grand Luxe</h5>
+              <p class="mb-0 text-secondary">High-gloss surfaces, custom furniture, and statement finishes for premium homes.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <div class="container-fluid" style="max-width: 1500px;">
+      <h2 class="section-title">Crystal Designers Portfolio</h2>
+      <div class="row g-4">
+        <div class="col-md-2 col-6 gallery-tile"><img src="https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=600&q=80" class="img-fluid" alt="Kitchen project" loading="lazy"></div>
+        <div class="col-md-2 col-6 gallery-tile"><img src="https://images.unsplash.com/photo-1616137466211-f939a420be84?auto=format&fit=crop&w=600&q=80" class="img-fluid" alt="Bedroom project" loading="lazy"></div>
+        <div class="col-md-2 col-6 gallery-tile"><img src="https://images.unsplash.com/photo-1616046229478-9901c5536a45?auto=format&fit=crop&w=600&q=80" class="img-fluid" alt="Living room project" loading="lazy"></div>
+        <div class="col-md-2 col-6 gallery-tile"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" class="img-fluid" alt="Hallway project" loading="lazy"></div>
+        <div class="col-md-2 col-6 gallery-tile"><img src="https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=600&q=80" class="img-fluid" alt="Bathroom project" loading="lazy"></div>
+        <div class="col-md-2 col-6 gallery-tile"><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?auto=format&fit=crop&w=600&q=80" class="img-fluid" alt="Dining area project" loading="lazy"></div>
+      </div>
+      <div class="text-center pt-4">
+        <a class="btn btn-crystal btn-lg" href="#contact">Request Your Design Proposal</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="testimonials" class="py-5">
+    <div class="container">
+      <h2 class="section-title">Client Stories</h2>
+      <div id="testimonialCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#testimonialCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="testimonial-card h-100">
+                  <p>"The team transformed our blank apartment into a serene, functional home. Every corner feels intentional and beautiful."</p>
+                  <h6 class="mt-3 mb-0">Aarav and Nisha Mehta</h6>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="testimonial-card h-100">
+                  <p>"From design meetings to final installation, Crystal Designers delivered with professionalism, speed, and incredible detail."</p>
+                  <h6 class="mt-3 mb-0">Ritika Malhotra</h6>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="testimonial-card h-100">
+                  <p>"Our villa now feels like a boutique retreat. Their lighting design and material choices made all the difference."</p>
+                  <h6 class="mt-3 mb-0">Karan Arora</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="testimonial-card h-100">
+                  <p>"I loved the transparent process and realistic 3D previews. The final design looked exactly as promised."</p>
+                  <h6 class="mt-3 mb-0">Pooja Khanna</h6>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="testimonial-card h-100">
+                  <p>"The wardrobe and kitchen are both stunning and practical. Their space planning solved issues we had for years."</p>
+                  <h6 class="mt-3 mb-0">Aditya Rao</h6>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="testimonial-card h-100">
+                  <p>"Crystal Designers brought calm elegance into our home. Guests keep asking who designed our interiors."</p>
+                  <h6 class="mt-3 mb-0">Sana and Imran Qureshi</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="container">
+      <h2 class="section-title">Frequently Asked Questions</h2>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button" data-bs-toggle="collapse" data-bs-target="#faq1">How does Crystal Designers begin a project?</button>
+          </h2>
+          <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">We begin with a discovery call, followed by site measurement, concept boards, and a detailed execution roadmap.</div>
+          </div>
+        </div>
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq2">Do you offer complete turnkey interiors?</button>
+          </h2>
+          <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">Yes, we handle design, civil work, carpentry, lighting, decor styling, and final handover under one team.</div>
+          </div>
+        </div>
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq3">What timeline should I expect?</button>
+          </h2>
+          <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">A typical 2-3 BHK interior project takes 8-14 weeks depending on customization depth and material lead times.</div>
+          </div>
+        </div>
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq4">Can you design in my preferred style?</button>
+          </h2>
+          <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">Absolutely. We customize every design around your taste, from contemporary and Japandi to luxurious classic interiors.</div>
+          </div>
+        </div>
+        <div class="accordion-item mb-3">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#faq5">Do you provide warranty and support?</button>
+          </h2>
+          <div id="faq5" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">Yes, we provide warranty coverage for modular work and offer post-handover support for adjustments and maintenance guidance.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="cta-section text-center py-5">
+    <div class="container">
+      <h2 class="mb-3">Design your dream home with Lokhande Designers</h2>
+      <p class="mb-4 text-light">Share your floor plan and style preferences. We will send a tailored concept and budget range.</p>
+      <a class="btn btn-crystal btn-lg" href="#whatsapp" target="_blank" rel="noopener noreferrer">Start on WhatsApp</a>
+    </div>
+  </section>
+
+  <footer class="text-center p-3">
+    © 2026 Lokhande Designers | Crafted Interiors. Timeless Feel.
+  </footer>
+
+  <a class="whatsapp-float" href="#whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="WhatsApp icon">
+  </a>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
+
